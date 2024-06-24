@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import '../../Components/textfields/Text.dart';
 import '../../Utils/AppColor/app_color.dart';
 import '../../Utils/AppImage/app_images.dart';
 
-class comments_Screen extends StatefulWidget {
-  const comments_Screen({super.key});
+class CommentsScreen extends StatefulWidget {
+  final int index;
+  const CommentsScreen({Key? key, required this.index}) : super(key: key);
 
   @override
-  State<comments_Screen> createState() => _comments_ScreenState();
+  State<CommentsScreen> createState() => _CommentsScreenState();
 }
 
-class _comments_ScreenState extends State<comments_Screen> {
+class _CommentsScreenState extends State<CommentsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,6 +87,14 @@ class _comments_ScreenState extends State<comments_Screen> {
                   tex:
                       'Doh is a terrifuc shopper who delivered /n the order quickly! thanks!',
                   colorOT: AppColors.greyt,
+                  Size: 15.sp,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 30.w),
+                child: text(
+                  tex: 'Tapped on item index: ${widget.index}',
+                  colorOT: AppColors.black,
                   Size: 15.sp,
                 ),
               ),

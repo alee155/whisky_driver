@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 import 'package:whisky_driver/Views/BottomW/bottom_w.dart';
-import 'package:whisky_driver/Views/SplashScreen/splash_screen.dart';
+import 'package:whisky_driver/Views/MapViewScreen/mapview_screen.dart';
 
 import 'Models/providers/providerChangeColor.dart';
 import 'Models/providers/setiing_text.dart';

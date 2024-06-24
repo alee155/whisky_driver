@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:whisky_driver/Views/ChatScreen/chatscreen.dart';
+
 import '../../Components/textfields/Text.dart';
 import '../../Utils/AppColor/app_color.dart';
 import '../../Utils/AppImage/app_images.dart';
 
-class inbox extends StatefulWidget {
-  const inbox({super.key});
+class Inbox extends StatefulWidget {
+  const Inbox({super.key});
 
   @override
-  State<inbox> createState() => _inboxState();
+  State<Inbox> createState() => _InboxState();
 }
 
-class _inboxState extends State<inbox> {
+class _InboxState extends State<Inbox> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +51,8 @@ class _inboxState extends State<inbox> {
             children: [
               Padding(
                 padding: EdgeInsets.only(left: 10.w),
-                child: text(tex: "Inbox", colorOT: AppColors.black, Size: 30.sp),
+                child:
+                    text(tex: "Inbox", colorOT: AppColors.black, Size: 30.sp),
               ),
               Padding(
                 padding: EdgeInsets.only(left: 10.w, right: 15.w, top: 10.h),
@@ -71,7 +74,7 @@ class _inboxState extends State<inbox> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.r),
                     color: Colors.white,
-                    boxShadow: [
+                    boxShadow: const [
                       // BoxShadow(
                       //   color: Colors.grey,
                       //   spreadRadius: 1,
@@ -82,7 +85,7 @@ class _inboxState extends State<inbox> {
                         color: Colors.grey,
                         spreadRadius: 1,
                         blurRadius: 10,
-                        offset: const Offset(-2, 0), // Shadow position
+                        offset: Offset(-2, 0), // Shadow position
                       ),
                       // BoxShadow(
                       //   color: Colors.grey,
@@ -175,78 +178,66 @@ class _inboxState extends State<inbox> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 10.w),
-                child:
-                    text(tex: "Messages", colorOT: AppColors.black, Size: 23.sp),
+                child: text(
+                    tex: "Messages", colorOT: AppColors.black, Size: 23.sp),
               ),
               SizedBox(
                 height: 10.h,
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 10.w),
-                child: text(
-                    tex: "Correction: Manhattan ptomotion email",
-                    colorOT: AppColors.black,
-                    Size: 15.sp),
-              ),
               SizedBox(
-                height: 5.h,
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 10.w),
-                child: text(
-                    tex: "Oct 01, 1:43am", colorOT: AppColors.greyt, Size: 15.sp),
-              ),
-              SizedBox(
-                height: 5.h,
-              ),
-              Divider(
-                color: AppColors.greyc, // Set the color of the divider
-                thickness: 2.h, // Set the thickness of the divider
-                height: 20.h, // Set the vertical space above the divider
-                indent: 0,
-                endIndent: 0, // Set the left indent of the divider
-                // Set the right indent of the divider
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 10.w),
-                child: text(
-                    tex: "Correction: Manhattan ptomotion email",
-                    colorOT: AppColors.black,
-                    Size: 15.sp),
-              ),
-              SizedBox(
-                height: 5.h,
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 10.w),
-                child: text(
-                    tex: "Oct 01, 1:43am", colorOT: AppColors.greyt, Size: 15.sp),
-              ),
-              SizedBox(
-                height: 5.h,
-              ),
-              Divider(
-                color: AppColors.greyc, // Set the color of the divider
-                thickness: 2.h, // Set the thickness of the divider
-                height: 20.h, // Set the vertical space above the divider
-                indent: 0,
-                endIndent: 0, // Set the left indent of the divider
-                // Set the right indent of the divider
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 10.w),
-                child: text(
-                    tex: "Correction: Manhattan ptomotion email",
-                    colorOT: AppColors.black,
-                    Size: 15.sp),
-              ),
-              SizedBox(
-                height: 5.h,
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 10.w),
-                child: text(
-                    tex: "Oct 01, 1:43am", colorOT: AppColors.greyt, Size: 15.sp),
+                height: 200.h,
+                child: ListView.builder(
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.vertical,
+                  itemCount: 25,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ChatScreen(),
+                          ),
+                        );
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 10.w),
+                            child: text(
+                                tex: "Correction: Manhattan ptomotion email",
+                                colorOT: AppColors.black,
+                                Size: 15.sp),
+                          ),
+                          SizedBox(
+                            height: 5.h,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 10.w),
+                            child: text(
+                                tex: "Oct 01, 1:43am",
+                                colorOT: AppColors.greyt,
+                                Size: 15.sp),
+                          ),
+                          SizedBox(
+                            height: 5.h,
+                          ),
+                          Divider(
+                            color:
+                                AppColors.greyc, // Set the color of the divider
+                            thickness: 2.h, // Set the thickness of the divider
+                            height: 20
+                                .h, // Set the vertical space above the divider
+                            indent: 0,
+                            endIndent: 0, // Set the left indent of the divider
+                            // Set the right indent of the divider
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
             ],
           ),

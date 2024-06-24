@@ -1,11 +1,12 @@
-
-
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:whisky_driver/Views/ChatScreen/chatscreen.dart';
+import 'package:whisky_driver/Views/Dashboard/dashboard.dart';
+import 'package:whisky_driver/Views/DemoOrder/demo_order.dart';
+import 'package:whisky_driver/Views/History/history.dart';
 
 import '../../Components/textfields/Text.dart';
 import '../../Utils/AppColor/app_color.dart';
@@ -19,6 +20,7 @@ class Account extends StatefulWidget {
   @override
   State<Account> createState() => _AccountState();
 }
+
 void signOutUser(BuildContext context) async {
   try {
     User? user;
@@ -35,12 +37,10 @@ void signOutUser(BuildContext context) async {
 
     print('User signed out successfully');
     Navigator.push(
-        context , MaterialPageRoute(builder: (context) => const signIn()));
+        context, MaterialPageRoute(builder: (context) => const signIn()));
     // showDialog(context: context, builder: (context){
     //   return AlertDialog( content: text(tex: "wrong", colorOT: AppColors.black, Size: 15),);
     // });
-
-
   } catch (e) {
     print('Error signing out: $e');
   }
@@ -50,6 +50,7 @@ class _AccountState extends State<Account> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
@@ -88,7 +89,8 @@ class _AccountState extends State<Account> {
                   left: 10.w,
                   bottom: 10.h,
                 ),
-                child:   text(tex: "Account", colorOT: AppColors.black, Size: 27.sp),
+                child:
+                    text(tex: "Account", colorOT: AppColors.black, Size: 27.sp),
               ),
               Container(
                 height: MediaQuery.of(context).size.height / 6,
@@ -105,7 +107,7 @@ class _AccountState extends State<Account> {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(left: 8.w, top: 8.h),
-                    child:  Align(
+                    child: Align(
                         alignment: Alignment.topLeft,
                         child: text(
                             tex: "Profile",
@@ -137,7 +139,7 @@ class _AccountState extends State<Account> {
                     child: const Align(
                         alignment: Alignment.topLeft,
                         child: text(
-                            tex: "payout accounts",
+                            tex: "Dilevery History",
                             colorOT: AppColors.black,
                             Size: 17)),
                   ),
@@ -149,45 +151,65 @@ class _AccountState extends State<Account> {
                   )
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 8.w, top: 8.h),
-                    child:  Align(
-                        alignment: Alignment.topLeft,
-                        child: text(
-                            tex: "Whisky Payment card",
-                            colorOT: AppColors.black,
-                            Size: 17.sp)),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(right: 8.w, top: 10.h, bottom: 8.h),
-                    child: Icon(Icons.arrow_forward_ios,
-                        color: AppColors.greyt, size: 22.sp),
-                  )
-                ],
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Dashboard(),
+                    ),
+                  );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 8.w, top: 8.h),
+                      child: Align(
+                          alignment: Alignment.topLeft,
+                          child: text(
+                              tex: "Safety Traings ",
+                              colorOT: AppColors.black,
+                              Size: 17.sp)),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.only(right: 8.w, top: 10.h, bottom: 8.h),
+                      child: Icon(Icons.arrow_forward_ios,
+                          color: AppColors.greyt, size: 22.sp),
+                    )
+                  ],
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 8.w, top: 8.h),
-                    child:  Align(
-                        alignment: Alignment.topLeft,
-                        child: text(
-                            tex: "Reeimbursementt requests",
-                            colorOT: AppColors.black,
-                            Size: 17.sp)),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(right: 8.w, top: 10.h, bottom: 8.h),
-                    child: Icon(Icons.arrow_forward_ios,
-                        color: AppColors.greyt, size: 22.sp),
-                  )
-                ],
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const DemoOrder(),
+                    ),
+                  );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 8.w, top: 8.h),
+                      child: Align(
+                          alignment: Alignment.topLeft,
+                          child: text(
+                              tex: "Demo Orders",
+                              colorOT: AppColors.black,
+                              Size: 17.sp)),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.only(right: 8.w, top: 10.h, bottom: 8.h),
+                      child: Icon(Icons.arrow_forward_ios,
+                          color: AppColors.greyt, size: 22.sp),
+                    )
+                  ],
+                ),
               ),
               SizedBox(
                 height: 20.h,
@@ -200,85 +222,65 @@ class _AccountState extends State<Account> {
                 endIndent: 0, // Set the left indent of the divider
                 // Set the right indent of the divider
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 8.w, top: 8.h),
-                    child:  Align(
-                        alignment: Alignment.topLeft,
-                        child: text(
-                            tex: "Batch eligibility",
-                            colorOT: AppColors.black,
-                            Size: 17.sp)),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(right: 8.w, top: 10.h, bottom: 8.h),
-                    child: Icon(Icons.arrow_forward_ios,
-                        color: AppColors.greyt, size: 22.sp),
-                  )
-                ],
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HistoryScreen(),
+                    ),
+                  );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 8.w, top: 8.h),
+                      child: Align(
+                          alignment: Alignment.topLeft,
+                          child: text(
+                              tex: "History ",
+                              colorOT: AppColors.black,
+                              Size: 17.sp)),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.only(right: 8.w, top: 10.h, bottom: 8.h),
+                      child: Icon(Icons.arrow_forward_ios,
+                          color: AppColors.greyt, size: 22.sp),
+                    )
+                  ],
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 8.w, top: 8.h),
-                    child:  Align(
-                        alignment: Alignment.topLeft,
-                        child: text(
-                            tex: "Safety trainings",
-                            colorOT: AppColors.black,
-                            Size: 17.sp)),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(right: 8.w, top: 10.h, bottom: 8.h),
-                    child: Icon(Icons.arrow_forward_ios,
-                        color: AppColors.greyt, size: 22.sp),
-                  )
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 8.w, top: 8.h),
-                    child:  Align(
-                        alignment: Alignment.topLeft,
-                        child: text(
-                            tex: "Shopping tips",
-                            colorOT: AppColors.black,
-                            Size: 17.sp)),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(right: 8.w, top: 10.h, bottom: 8.h),
-                    child: Icon(Icons.arrow_forward_ios,
-                        color: AppColors.greyt, size: 22.sp),
-                  )
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 8.w, top: 8.h),
-                    child:  Align(
-                        alignment: Alignment.topLeft,
-                        child: text(
-                            tex: "Demo orders",
-                            colorOT: AppColors.black,
-                            Size: 17.sp)),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(right: 8.w, top: 10.h, bottom: 8.h),
-                    child: Icon(Icons.arrow_forward_ios,
-                        color: AppColors.greyt, size: 22.sp),
-                  )
-                ],
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ChatScreen(),
+                    ),
+                  );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 8.w, top: 8.h),
+                      child: Align(
+                          alignment: Alignment.topLeft,
+                          child: text(
+                              tex: "Settings",
+                              colorOT: AppColors.black,
+                              Size: 17.sp)),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.only(right: 8.w, top: 10.h, bottom: 8.h),
+                      child: Icon(Icons.arrow_forward_ios,
+                          color: AppColors.greyt, size: 22.sp),
+                    )
+                  ],
+                ),
               ),
               Divider(
                 color: AppColors.greyc, // Set the color of the divider
@@ -288,36 +290,14 @@ class _AccountState extends State<Account> {
                 endIndent: 0, // Set the left indent of the divider
                 // Set the right indent of the divider
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 8.w, top: 8.h),
-                    child:  Align(
-                        alignment: Alignment.topLeft,
-                        child: text(
-                            tex: "Settings",
-                            colorOT: AppColors.black,
-                            Size: 17.sp)),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(right: 8.w, top: 10.h, bottom: 8.h),
-                    child: Icon(Icons.arrow_forward_ios,
-                        color: AppColors.greyt, size: 22.sp),
-                  )
-                ],
-              ),
               GestureDetector(
-                onTap:(){
+                onTap: () {
                   signOutUser(context);
-
                 },
-
                 child: Padding(
-
-                  padding:  EdgeInsets.only(left: 8.w, top: 8.h ,bottom: 20),
-                  child:  text(tex: "Sign out", colorOT: AppColors.black, Size: 17.sp),
+                  padding: EdgeInsets.only(left: 8.w, top: 8.h, bottom: 20),
+                  child: text(
+                      tex: "Sign out", colorOT: AppColors.black, Size: 17.sp),
                 ),
               )
             ],

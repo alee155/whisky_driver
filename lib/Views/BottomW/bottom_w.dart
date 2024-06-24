@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:whisky_driver/Views/Dashboard/dashboard.dart';
+
 import '../../Utils/AppImage/app_images.dart';
 import '../Account/account.dart';
 import '../Earnings/earnings.dart';
 import '../Inbox/inbox.dart';
-
-import '../SplashScreen/splash_screen.dart';
 import '../feedback/feed_back.dart';
 
 class bottomW extends StatefulWidget {
@@ -19,11 +19,11 @@ class bottomW extends StatefulWidget {
 class _bottomWState extends State<bottomW> {
   int current = 0;
   final tabs = [
-    splash_screen(),
-    Earnings(),
-    feed_back(),
-    inbox(),
-    Account(),
+    const Dashboard(),
+    const Earnings(),
+    const FeedBack(),
+    const Inbox(),
+    const Account(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class _bottomWState extends State<bottomW> {
               color: Colors.grey.withOpacity(0.5), // Shadow color
               spreadRadius: 6, // Spread radius
               blurRadius: 9, // Blur radius
-              offset: Offset(0, 3), // Offset
+              offset: const Offset(0, 3), // Offset
             ),
           ],
         ),
